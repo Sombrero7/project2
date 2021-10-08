@@ -169,16 +169,11 @@ This project uses a dataset containing information on 21,597 property sales in K
     </tr>
   </tbody>
 </table>
-<p>5 rows × 21 columns</p>
 </div>
 
 
 The information provided includes details like the square footage of lot and living space, number of beds and bathrooms, the date the property was sold, sale price, number of floors in the house, if it was a waterfront property, the zip code the property is in, and other additional columns shown below.
 
-
-    <class 'pandas.core.frame.DataFrame'>
-    RangeIndex: 21597 entries, 0 to 21596
-    Data columns (total 21 columns):
      #   Column         Non-Null Count  Dtype  
     ---  ------         --------------  -----  
      0   id             21597 non-null  int64  
@@ -205,15 +200,13 @@ The information provided includes details like the square footage of lot and liv
     dtypes: float64(6), int64(9), object(6)
     memory usage: 3.5+ MB
 
-
 As the model is predicting the price of future homes, price is the target variable used from the dataset. The distribution of the column can be seen below, where there is a right skew, indicating the presence of some very expensive homes in the dataset.
 
 <img src="images/price_hist.png" />
 
-
 However, not all the information provided in the original dataset is used in the creation of the model. These factors aren't all significant in helping create an inference around home prices and thus it's beneficial to pair the dataset down to important points. Furthermore, the continuous features that correlate well with the target variable, price, while not correlating strongly with each other would make for viable features to use, as this shows they have some kind of correlation with price with not creating issues of multicollinearity. These features, like sqft_living and sqft_lot, can be seen in the below heatmap.
 
-<img src="images/heat_map_large.png" />
+<img src="images/large_heat_map.png" />
 
 The data is also limited in it's distribution of information. For example, there are not a lot of higher priced homes included in the set, so the model could become more variable for higher priced homes as there's not enough data to help capture the relationship. Furthermore, the dataset is also limited in its quantity and number of features, which may also impact the model.
 
@@ -222,7 +215,6 @@ The data is also limited in it's distribution of information. For example, there
 ### Outliers
 
 While most of the data was entered correctly, there does appear to be some mistyped entries. An example is shown below, where one property is listed with 33 bedrooms while only having 1,620 square feet of living space, which isn't possible.
-
 
     id               2402100895
     date              6/25/2014
@@ -251,19 +243,6 @@ While most of the data was entered correctly, there does appear to be some misty
 Similarly, there are examples of data where the total amount of living space (sqft_living) exceeds the lot space of the property, even when floors are taken into account. This isn't possible, as it would mean the house is bigger than the lot it resides on.
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -489,10 +468,7 @@ Similarly, there are examples of data where the total amount of living space (sq
 <p>8 rows × 21 columns</p>
 </div>
 
-
-
 Due to the fact that these nine listings don't seem to be possible and are likely present in the dataset due to human error, they were dropped from the final dataset.
-
 
 ### Final Columns
 
@@ -525,19 +501,6 @@ As location is one of the points of interest in the analysis and the zip code co
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -624,19 +587,6 @@ When renovation is considered in the iterative models below, it is treated as a 
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -723,19 +673,6 @@ The final column created was a bin for house condition. In order to make the res
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -819,13 +756,11 @@ The final column created was a bin for house condition. In order to make the res
 
 
 ## Baseline Model
----
 
 The baseline used for comparison of the models is the mean of the price. This is the simplest predictor, and thus works as a good measure of comparison to see if the future models have any kind of inferential power. The R2 for the baseline is around -5.6 x 10^-5, indicating a very small number that does not really explain any of the variability in price
 
 
 ## Modeling and Evaluation
----
 
 In order to make the modeling more efficient, the function below is used to generate the models. Briefly, it takes in a train-test split, if the independant variables are going to be scaled, and the names of continuous variables to know which columns to scale if appliable. The necessary inputs are then scaled if needed, the model is generated, the assumption tests are run, and the final model is returned.
 
@@ -1253,7 +1188,6 @@ While the fifth model has a drop of .1% in the adujsted R2 value, the resulting 
 
 
 ## Final Model Evaluation
----
 
 As mentioned earlier, the fifth model is the final model used as further iterations did not show a big enough increase in R2 to consider pursuing further. For interpretability, the fifth model is again included below, but this time with the continuous variable being unscaled. The takeaway for this model seems to be that location, square foot living space, and condition of the home can be used to explain around 75% of the variability of price for homes in King County from 2014-2015. This is an improvement on the baseline, where the R2 score was quite small, indicating this model does a much better job of explaining the variability. With everything else held steady, an increse in 1 sqaure foot living space increases price by around 247 dollars. Other factors still held constant, living in an urban rather than suburban area increases price by 25,670 dollars and living in a rural area rather than suburban decreases price by 88,320 dollars. Of these factors, location is the most significant predictor, followed by square foot living and then home condition.
 
@@ -1332,7 +1266,6 @@ While this is a decent fit for the dataset provided, it isn't clear how well it 
 
 
 ## Conclusions
----
 When real estate agencies are looking at home price inferences during this timeframe, the location and square foot living space are the most important factors that could impact home price, followed by the home condition. Therefore, when considering the price range of houses a real estate agency is looking for, these factors can help give a more numeric understanding of variability in price range.
 
 Limitations of this data are obviously the timeframe and location, as home price prediction would vary based on these factors so this model wouldn't be applicable outside of this consideration. Building on that, the model is unstable for homes of a higher price and actually cuts off high-priced outliers, so buyers looking for more expensive or extravegant houses wouldn't get accurrate results. The model also doesn't include all the variables, so there may be factors influencing price that are overlooked.
@@ -1340,7 +1273,9 @@ Limitations of this data are obviously the timeframe and location, as home price
 Finally, going forward it would be good to work with more data from different areas to see if the model could be adapted to different locations, as well as integrating data from more recent years and a more robust number of features.
 
 ## Project Structure
+```
 ├── King_County_Analysis.ipynb
 ├── README.md
 ├── images
 └── data
+```
