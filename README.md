@@ -2,36 +2,23 @@
 <img src="images/for-sale-sign.png" />
 
 # King County House Price Model
----
+
 **Authors:** Wes Newcomb, Noble Tang, Kelsey Lane
 
 ## Overview
----
+
 This project analyzes housing information drawn from the King County area from May 2014 to May 2015 in order to help real estate agencies determine how different metrics can impact the price of a home. After the data was cleaned and encoded, various iterative multiple linear regressions were run in order to converge on a model to use for the house price inference. It was found that the price of a given home in King County could be reasonably modeled using square footage of the house, the condition of the home, and if the house was in an urban, suburban, or rural area.
 
 ## Business Problem
----
+
 This model was created for small real estate agencies in King County during 2016 to help them understand more about how altering certain features of a home could impact the resulting price range of the house. This can help give them insight into dynamics that might have been exclusive only to large companies that had access to this kind of analysis before and help make these smaller real estate agencies more competitive. By focusing in on how location, house condition, and square footage relate to price, real estate agencies can have a digestible understanding of some basic factors to focus on that can help improve their business.
 
 ## Data Understanding
----
+
 This project uses a dataset containing information on 21,597 property sales in King County between May 2014 and May 2015 drawn from the [King County website](https://info.kingcounty.gov/assessor/esales/residential.aspx?openSearchForm=1). Each row represents a different sale and corresponding information about the property sold.
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -231,7 +218,6 @@ However, not all the information provided in the original dataset is used in the
 The data is also limited in it's distribution of information. For example, there are not a lot of higher priced homes included in the set, so the model could become more variable for higher priced homes as there's not enough data to help capture the relationship. Furthermore, the dataset is also limited in its quantity and number of features, which may also impact the model.
 
 ## Data Preparation
----
 
 ### Outliers
 
