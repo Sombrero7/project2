@@ -197,8 +197,6 @@ The information provided includes details like the square footage of lot and liv
      18  long           21597 non-null  float64
      19  sqft_living15  21597 non-null  int64  
      20  sqft_lot15     21597 non-null  int64  
-    dtypes: float64(6), int64(9), object(6)
-    memory usage: 3.5+ MB
 
 As the model is predicting the price of future homes, price is the target variable used from the dataset. The distribution of the column can be seen below, where there is a right skew, indicating the presence of some very expensive homes in the dataset.
 
@@ -237,7 +235,6 @@ While most of the data was entered correctly, there does appear to be some misty
     long               -122.331
     sqft_living15          1330
     sqft_lot15             4700
-    Name: 15856, dtype: object
 
 
 Similarly, there are examples of data where the total amount of living space (sqft_living) exceeds the lot space of the property, even when floors are taken into account. This isn't possible, as it would mean the house is bigger than the lot it resides on.
@@ -465,7 +462,6 @@ Similarly, there are examples of data where the total amount of living space (sq
     </tr>
   </tbody>
 </table>
-<p>8 rows × 21 columns</p>
 </div>
 
 Due to the fact that these nine listings don't seem to be possible and are likely present in the dataset due to human error, they were dropped from the final dataset.
@@ -489,7 +485,6 @@ After selecting the final columns, there is some missing data left in the year r
     yr_built           0
     yr_renovated    3842
     zipcode            0
-    dtype: int64
 
 
 As it is unclear if the null values indicate that the house wasn't renovated or that this information just wasn't collected, the safest approach seems to be to fill the empty value with the median value, which in this case is 0 indicating the property wasn't renovated.
