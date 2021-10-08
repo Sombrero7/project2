@@ -763,7 +763,10 @@ In order to make the modeling more efficient, the function below is used to gene
 ### First model
 The first model looks at two features that come up frequently when talking about real estate - square foot living space and number of bathrooms.
 
-
+```
+Train MSE: 365204642459.9775
+Test MSE: 350703089728.4004
+```
 <img src="images/model1.png" />
 
 
@@ -828,6 +831,10 @@ The first model looks at two features that come up frequently when talking about
 ### Second model
 While the Adjusted R2 value for this first model is better than the baseline, bathrooms does not seem to be a significant predictor despite correlating well with price. Therefore, the next model swaps out bathrooms for bedrooms as a predictor, which is another important factor to consider when looking at home price.
 
+```
+Train MSE: 362989735310.17664
+Test MSE: 348310084760.00806
+```
 
 <img src="images/model2.png" />
 
@@ -893,6 +900,10 @@ While the Adjusted R2 value for this first model is better than the baseline, ba
 ### Third model
 While the adujsted R2 value is only slightly better than the first model, both coefficients this time are significant. Therefore, this model is the one iterated on as it includes the two coefficients that correlate highly with price and can help real estate agencies get a deeper grip on how changing these factors may impact price range. From here, the next model includes location in an effort to better explain the variability in price and thus improve the adjusted R2 score. This also improves its usefulness for home buyers looking for a house in a specific type of area. As location is treated as a categorical variable, it is one hot encoded and the rural column is dropped to avoid multicollinearity issues.
 
+```
+Train MSE: 118549236782.18959
+Test MSE: 111929070343.0281
+```
 
 <img src="images/model3.png" />
 
@@ -963,6 +974,10 @@ While the adujsted R2 value is only slightly better than the first model, both c
 ### Fourth model
 This third model has a drastic increase in the adjusted R2 value, hopping up from around 16% to now explaining almost 82% of the variability in price. All coefficients also remain significant, indicating they would be good predictors to use. However, there are issues with both the homoskedasticity and normality assumptions. In an effort to address this, the next model eliminates houses with a price outside three standard deviations from the mean based on the training data from both the train and test sets. This should help decrease the effect of home price outliers on the data and help correct some issues with the model.
 
+```
+Train MSE: 103656106075.60287
+Test MSE: 104120129333.86363
+```
 
 <img src="images/model4.png" />
 
@@ -1034,6 +1049,10 @@ This third model has a drastic increase in the adjusted R2 value, hopping up fro
 ### Fifth model
 This fourth model shows a slight increase in adjusted R2 after cutting out the outliers, increasing by around 2%. Furthermore, compared to the third model with the same predictors, there is a lower mean squared error with less of a difference between the training and test sets, indicating this model is a bit more accurate than the older one. However, the metric for bedrooms is unintuitive for an inference model like this. Therefore, other  metrics were tested to see how they would impact price. As home condition is another factor real estate agencies could consider when looking at homes, it was substituted for bedrooms to see how it would impact the model. 
 
+```
+Train MSE: 97965821583.35643
+Test MSE: 98179373271.56746
+```
 
 <img src="images/model5.png" />
 
@@ -1108,6 +1127,10 @@ This fourth model shows a slight increase in adjusted R2 after cutting out the o
 ### Sixth model
 While the fifth model has a drop of .1% in the adujsted R2 value, the resulting model is more intuitive of an explanation for real estate agencies. However, while this is the final model settled on, further iterations were done with other inputs to see if there would be a pursuable increase in adjusted R2 with different metrics as well. For the sake of brevity, only one of the models is included as none of them are further pursued.
 
+```
+Train MSE: 95890428030.35956
+Test MSE: 96919709464.90942
+```
 
 <img src="images/model6.png" />
 
@@ -1190,6 +1213,10 @@ When it comes to the model assumptions, the model does not do that well. While l
 
 While this is a decent fit for the dataset provided, it isn't clear how well it would generalize to different areas and different time periods, as house prices and price distribution would be affected by these factors. Furthermore, the fact that the model does not fullfill the assumptions would also make it inaccurrate in more rigorous price inferences. As for how beneficial this model is for the stakeholders, given the adjusted R2 score of 75%, it would do a decent job at helping predict home prices variability for real estate agencies in King County.
 
+```
+Train MSE: 53075303270.234314
+Test MSE: 54786684337.00644
+```
 
 <img src="images/fin_model.png" />
 
