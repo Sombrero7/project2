@@ -200,11 +200,11 @@ The information provided includes details like the square footage of lot and liv
 
 As the model is predicting the price of future homes, price is the target variable used from the dataset. The distribution of the column can be seen below, where there is a right skew, indicating the presence of some very expensive homes in the dataset.
 
-<img src="images/price_hist.png" />
+<img src="images/price_hist2.png" />
 
 However, not all the information provided in the original dataset is used in the creation of the model. These factors aren't all significant in helping create an inference around home prices and thus it's beneficial to pair the dataset down to important points. Furthermore, the continuous features that correlate well with the target variable, price, while not correlating strongly with each other would make for viable features to use, as this shows they have some kind of correlation with price with not creating issues of multicollinearity. These features, like sqft_living and sqft_lot, can be seen in the below heatmap.
 
-<img src="images/large_heat_map.png" />
+<img src="images/large_heat_map2.png" />
 
 The data is also limited in it's distribution of information. For example, there are not a lot of higher priced homes included in the set, so the model could become more variable for higher priced homes as there's not enough data to help capture the relationship. Furthermore, the dataset is also limited in its quantity and number of features, which may also impact the model.
 
