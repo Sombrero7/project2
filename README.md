@@ -750,14 +750,14 @@ The final column created was a bin for house condition. In order to make the res
 
 
 
-## Baseline Model
-
-The baseline used for comparison of the models is the mean of the price. This is the simplest predictor, and thus works as a good measure of comparison to see if the future models have any kind of inferential power. The R2 for the baseline is around -5.6 x 10^-5, indicating a very small number that does not really explain any of the variability in price
 
 
 ## Modeling and Evaluation
 
-In order to make the modeling more efficient, the function below is used to generate the models. Briefly, it takes in a train-test split, if the independant variables are going to be scaled, and the names of continuous variables to know which columns to scale if appliable. The necessary inputs are then scaled if needed, the model is generated, the assumption tests are run, and the final model is returned.
+
+### Baseline Model
+
+The baseline used for comparison of the models is the mean of the price. This is the simplest predictor, and thus works as a good measure of comparison to see if the future models have any kind of inferential power. The R2 for the baseline is around -5.6 x 10^-5, indicating a very small number that does not really explain any of the variability in price.
 
 
 ### First model
